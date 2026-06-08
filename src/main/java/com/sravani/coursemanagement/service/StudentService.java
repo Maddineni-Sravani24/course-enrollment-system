@@ -34,4 +34,9 @@ public class StudentService {
     public List<Student> searchByName(String name) {
         return repository.findByName(name);
     }
+
+    public long getStudentCount() {
+        return repository.count();
+    }
+    
 }

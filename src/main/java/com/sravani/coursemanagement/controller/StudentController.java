@@ -1,4 +1,4 @@
-package com.sravani.coursemanagement.controller;
+package com.sravani.coursemanagement.Student;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import com.sravani.coursemanagement.entity.Student;
 import com.sravani.coursemanagement.service.StudentService;
 
 @RestController
-@CrossOrigin(origins="http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000")
 public class StudentController {
 
     @Autowired
@@ -26,23 +26,22 @@ public class StudentController {
     }
 
     @DeleteMapping("/deleteStudent/{id}")
-    public void deleteStudent(@PathVariable int id) {
-        service.deleteStudent(id);
+    public String deleteStudent(@PathVariable int id) {
+        return service.deleteStudent(id);
     }
-    @DeleteMapping("/deleteStudent/{id}")
-public String deleteStudent(@PathVariable int id) {
-    return studentService.deleteStudent(id);
-}
 
-@PutMapping("/updateStudent")
-public Student updateStudent(@RequestBody Student student) {
-    return studentService.updateStudent(student);
-}
+    @PutMapping("/updateStudent")
+    public Student updateStudent(@RequestBody Student student) {
+        return service.updateStudent(student);
+    }
 
-@GetMapping("/searchStudentByName/{name}")
-public List<Student> searchStudentByName(
-        @PathVariable String name) {
+    @GetMapping("/searchStudentByName/{name}")
+    public List<Student> searchStudentByName(@PathVariable String name) {
+        return service.searchByName(name);
+    }
 
-    return studentService.searchByName(name);
-}
+    @GetMapping("/studentCount")
+    public long getStudentCount() {
+        return service.getStudentCount();
+    }
 }

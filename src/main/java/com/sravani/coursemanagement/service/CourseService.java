@@ -16,15 +16,15 @@ public class CourseService {
 
     public Course addCourse(Course course) {
 
-        if(courseRepository.existsById(course.getId())) {
+        if (courseRepository.existsById(course.getId())) {
             throw new RuntimeException("Course ID already exists");
         }
 
-        if(course.getName() == null || course.getName().trim().isEmpty()) {
+        if (course.getName() == null || course.getName().trim().isEmpty()) {
             throw new RuntimeException("Course Name cannot be empty");
         }
 
-        if(course.getFee() <= 0) {
+        if (course.getFee() <= 0) {
             throw new RuntimeException("Fee must be greater than 0");
         }
 
@@ -52,7 +52,7 @@ public class CourseService {
         return courseRepository.findByName(name);
     }
 
-    public List<Course> searchByFee(double fee) {
-    return courseRepository.findByFee(fee);
-}
+    public long getCourseCount() {
+        return courseRepository.count();
+    }
 }
